@@ -25,6 +25,15 @@ bool checkWord(const char* word)
 	int wordLen = strlen(word);
 	for (int i = 0; i < wordLen; ++i)
 	{
+		switch (word[i])
+		{
+		case ',': case '.': case '!': case '?': case ';': case ':': case '-': case '"': case '(': case ')':
+			printf("Ошибка! В слове присутствуют знаки препинания!\n");
+			return false;
+		default:
+			break;
+		}
+
 		if (word[i] >= '0' && word[i] <= '9') 
 		{
 			printf("Ошибка! В слове присутствуют цифры!\n");
@@ -38,14 +47,10 @@ bool checkWord(const char* word)
 		{
 			hasRussian = true;
 		}
-
-		switch (word[i])
+		else
 		{
-		case ',': case '.': case '!': case '?': case ';': case ':':
-			printf("Ошибка! В слове присутствуют знаки препинания!\n");
+			printf("Ошибка! Некорректный ввод!\n");
 			return false;
-		default:
-			break;
 		}
 
 		if (hasEnglish && hasRussian)
